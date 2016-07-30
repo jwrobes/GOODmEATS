@@ -14,4 +14,6 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
   config.action_mailer.default_url_options = { host: "www.example.com" }
   config.active_job.queue_adapter = :inline
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
+  config.middleware.use Clearance::BackDoor
 end

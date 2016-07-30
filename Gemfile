@@ -18,9 +18,11 @@ gem "simple_form"
 gem "skylight"
 gem "sprockets", ">= 3.0.0"
 gem "sprockets-es6"
-gem "suspenders"
+gem "suspenders", "1.40.0"
 gem "title"
 gem "uglifier"
+gem "clearance"
+gem "rubocop"
 
 group :development do
   gem "quiet_assets"

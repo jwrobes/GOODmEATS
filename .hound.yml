@@ -1,4 +1,5 @@
 # See https://houndci.com/configuration for help.
+fail_on_violations: true
 haml:
   # config_file: .haml-style.yml
   enabled: true
@@ -6,9 +7,11 @@ javascript:
   # config_file: .javascript-style.json
   enabled: true
   # ignore_file: .javascript_ignore
-ruby:
-  # config_file: .ruby-style.yml
-  enabled: true
 scss:
   # config_file: .scss-style.yml
+  enabled: true
+ruby:
+  enabled: true
+  config_file: .rubocop.yml
+coffee_script:
   enabled: true
