@@ -9,6 +9,8 @@ AllCops:
     - "config/initializers/*"
     - "bin/delayed_job/"
     - "bin/spring/"
+    - "bin/rails/"
+    - "bin/rspec/"
     - "config/smtp.rb"
     - "spec/support/yelp_api_helper.rb"
   UseCache: false
@@ -250,4 +252,6 @@ Lint/LiteralInCondition:
   Enabled: false
 Lint/LiteralInInterpolation:
   Description: Checks for literals used in interpolation.
+  Enabled: false
+Style/FrozenStringLiteralComment:
   Enabled: false
