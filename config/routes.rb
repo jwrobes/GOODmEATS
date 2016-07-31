@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  constraints Clearance::Constraints::SignedIn.new(&:admin?) do
+    namespace :admin do
+      resources :users
+      root to: "users#index"
+    end
+    resource :new_restaurant_searches, only: [:show, :create]
+    resources :restaurants, only: [:new]
+  end
+
   root to: "restaurants#index"
 
   resources :restaurants, only: [:index]

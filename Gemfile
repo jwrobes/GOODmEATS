@@ -24,6 +24,8 @@ gem "title"
 gem "uglifier"
 gem "clearance"
 gem "rubocop"
+gem "administrate"
+gem "yelp"
 
 group :development do
   gem "quiet_assets"
