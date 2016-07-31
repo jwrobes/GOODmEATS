@@ -1,0 +1,17 @@
+<hr>
+<div class="list-display">
+  <p><%= restaurant.name  %></h4>
+  <ul class="meats">
+    Meats
+    <% restaurant.meats.each do |meat| %>
+      <li><%= meat.name %></li>
+    <% end %>
+  </ul>
+  <ul class="sources">
+  Sources
+    <% restaurant.sources.each do |source| %>
+      <li><%= source.name %></li>
+    <% end %>
+  </ul>
+</div>
+

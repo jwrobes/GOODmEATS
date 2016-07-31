@@ -1,5 +1,5 @@
 <ul class="restaurants">
-  <% @restaurants.each do |restaurant|  %>
-    <li><%= restaurant.name  %></li>
+  <% @restaurants.each do |restaurant| %>
+    <%= render 'restaurant', restaurant: restaurant %>
   <% end %>
 </ul>
