@@ -1,0 +1,10 @@
+<h1>New GOODmEATS Restaurant</h1>
+<h2> <%= @new_restaurant.name %> </h2>
+<p class="new-restaurant-address"><%= @new_restaurant.display_address.join(' ')  %></p>
+<%= simple_form_for @restaurant do |form| %>
+  <%= form.hidden_field :api_id, :value => @new_restaurant.api_id %>
+  <%= form.hidden_field :name, :value => @new_restaurant.name %>
+  <%= form.hidden_field :phone, :value => @new_restaurant.phone %>
+  <%= form.hidden_field :coordinate, :value => @new_restaurant.coordinate.to_json %>
+  <%= form.submit "Submit" %>
+<% end  %>

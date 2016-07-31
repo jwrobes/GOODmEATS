@@ -1,0 +1,22 @@
+<%= form_for @new_restaurant_search, class: "new-restaurant-searches-form" do |form| %>
+  <fieldset>
+    <%= form.label :query %>
+    <%= form.text_field :query %>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+    <%= form.submit "Search" %>
+  </fieldset>
+<% end %>
+
+<ul>
+  <% if @results %>
+    <% @results.each do |result| %>
+      <li class="new-restaurant">
+        <p class="title">  <%= result.name %>
+      <%= link_to 'Add restaurant', new_restaurant_path(result: result.to_h)  %>
+        </p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
