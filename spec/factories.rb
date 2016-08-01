@@ -8,6 +8,7 @@ FactoryGirl.define do
 
   factory :source do
     name "Marin Sun Farms"
+    url "http://marinsunfarms.com"
   end
 
   factory :meat do

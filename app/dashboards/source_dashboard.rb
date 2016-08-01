@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class UserDashboard < Administrate::BaseDashboard
+class SourceDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,14 +8,13 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    restaurant_sources: Field::HasMany,
+    restaurants: Field::HasMany,
     id: Field::Number,
+    name: Field::String,
+    url: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    email: Field::String,
-    encrypted_password: Field::String,
-    confirmation_token: Field::String,
-    remember_token: Field::String,
-    admin: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -24,40 +23,35 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :restaurants,
     :id,
-    :created_at,
-    :updated_at,
-    :email,
+    :name,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :restaurants,
     :id,
+    :name,
+    :url,
     :created_at,
     :updated_at,
-    :email,
-    :encrypted_password,
-    :confirmation_token,
-    :remember_token,
-    :admin,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :email,
-    :encrypted_password,
-    :confirmation_token,
-    :remember_token,
-    :admin,
+    :restaurants,
+    :name,
+    :url,
   ].freeze
 
-  # Overwrite this method to customize how users are displayed
+  # Overwrite this method to customize how sources are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
+  # def display_resource(source)
+  #   "Source ##{source.id}"
   # end
 end
