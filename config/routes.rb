@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   constraints Clearance::Constraints::SignedIn.new(&:admin?) do
     namespace :admin do
+      resources :meats
+      resources :sources
       resources :users
+      resources :restaurants
       root to: "users#index"
     end
     resource :new_restaurant_searches, only: [:show, :create]
