@@ -51,7 +51,7 @@ class MeatDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how meats are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(meat)
-  #   "Meat ##{meat.id}"
-  # end
+  def display_resource(meat)
+    meat.name
+  end
 end

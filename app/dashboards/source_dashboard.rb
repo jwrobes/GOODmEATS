@@ -51,7 +51,7 @@ class SourceDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how sources are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(source)
-  #   "Source ##{source.id}"
-  # end
+  def display_resource(source)
+    source.name
+  end
 end
