@@ -1,7 +1,7 @@
 module YelpApiHelper
 
   def stub_yelp_api_request
-    stub_request(:get, "https://api.yelp.com/v2/search?category_filter=restaurants&lang=en&limit=20&location=94611&sort=1&term=Park%20burger").
+    stub_request(:get, "https://api.yelp.com/v2/search?category_filter=restaurants&lang=en&limit=20&location=94611&sort=0&term=Park%20burger").
       to_return(:status => 200, :body => yelp_response.to_json, :headers => {})
   end
 
