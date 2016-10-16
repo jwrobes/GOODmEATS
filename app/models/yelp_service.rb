@@ -1,5 +1,8 @@
 class YelpService
   DEFAULT_LOCATION_DISTANCE = 10_000
+  SORT_BY_BEST_FIT_CODE = 0
+  SORT_BY_BEST_DISTANCE_CODE = 1
+  SORT_BY_BEST_RATING_CODE = 2
 
   attr_reader :query, :location
 
@@ -29,7 +32,7 @@ class YelpService
       term: query,
       category_filter: category,
       limit: 20,
-      sort: 1
+      sort: SORT_BY_BEST_FIT_CODE
     }
   end
 
