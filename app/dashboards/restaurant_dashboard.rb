@@ -16,7 +16,7 @@ class RestaurantDashboard < Administrate::BaseDashboard
     name: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    display_address: Field::String,
+    display_address: Field::String.with_options(searchable: false),
     phone: Field::String,
     coordinate: Field::String.with_options(searchable: false),
     api_id: Field::String,
