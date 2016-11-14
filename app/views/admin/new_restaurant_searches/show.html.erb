@@ -1,0 +1,48 @@
+<%#
+# Show
+
+This view is the template for the show page.
+It renders the attributes of a resource,
+as well as a link to its edit page.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Show][1].
+  Contains methods for accessing the resource to be displayed on the page,
+  as well as helpers for describing how each attribute of the resource
+  should be displayed.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
+%>
+
+<header class="header">
+  <h1 class="header__heading">Search for New Restaurants</h1>
+  <div class="header__actions">
+    <%= link_to 'Back', :back, class: "button" %>
+  </div>
+</header>
+
+<div class="form-container">
+  <%= form_for @admin_new_restaurant_search, class: "new-restaurant-searches-form" do |form| %>
+    <fieldset>
+      <%= form.label :query %>
+      <%= form.text_field :query %>
+      <%= form.label :location %>
+      <%= form.text_field :location %>
+      <%= form.submit "Search" %>
+    </fieldset>
+  <% end %>
+
+  <ul>
+    <% if @results %>
+      <% @results.each do |result| %>
+        <li class="new-restaurant">
+          <p class="title">  <%= result.name %>
+        <%= link_to 'Add restaurant', new_admin_restaurant_path(result: result.to_h)  %>
+          </p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

@@ -6,10 +6,9 @@ Rails.application.routes.draw do
       resources :sources
       resources :users
       resources :restaurants
+      resource :new_restaurant_searches, only: [:show, :create]
       root to: "users#index"
     end
-    resource :new_restaurant_searches, only: [:show, :create]
-    resources :restaurants, only: [:new, :create]
   end
 
   root to: "restaurants#index"
