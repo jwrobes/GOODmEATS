@@ -10,9 +10,10 @@ javascript:
 scss:
   # config_file: .scss-style.yml
   enabled: true
-  exclude: - "app/assets/stylesheets/administrate/library/**/*"
-  exclude: - "app/assets/stylesheets/administrate/components/**/*"
-  exclude: - "app/assets/stylesheets/administrate/base/**/*"
+  exclude:
+    - "app/assets/stylesheets/administrate/library/**/*"
+    - "app/assets/stylesheets/administrate/components/**/*"
+    - "app/assets/stylesheets/administrate/base/**/*"
 ruby:
   enabled: true
   config_file: .rubocop.yml
