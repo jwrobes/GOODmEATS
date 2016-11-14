@@ -8,12 +8,8 @@ javascript:
   enabled: true
   # ignore_file: .javascript_ignore
 scss:
-  # config_file: .scss-style.yml
+  config_file: .scss-style.yml
   enabled: true
-  exclude:
-    - "app/assets/stylesheets/administrate/library/**/*"
-    - "app/assets/stylesheets/administrate/components/**/*"
-    - "app/assets/stylesheets/administrate/base/**/*"
 ruby:
   enabled: true
   config_file: .rubocop.yml
