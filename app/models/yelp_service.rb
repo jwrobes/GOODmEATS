@@ -3,6 +3,12 @@ class YelpService
   SORT_BY_BEST_FIT_CODE = 0
   SORT_BY_BEST_DISTANCE_CODE = 1
   SORT_BY_BEST_RATING_CODE = 2
+  REQUIRED_METHODS = [
+    :name,
+    :id,
+    :location,
+    :phone
+  ].freeze
 
   attr_reader :query, :location
 
@@ -17,11 +23,29 @@ class YelpService
 
   def search
     search_response.businesses.map do |business|
-      parse(business)
-    end
+      parse(business) if business_valid?(business)
+    end.compact
   end
 
   private
+
+  def business_valid?(business)
+    if has_required_methods?(business.methods) &&
+       location_valid?(business.location)
+      return true
+    else
+      return false
+    end
+  end
+
+  def has_required_methods?(methods)
+    required_keys = REQUIRED_METHODS.clone
+    (required_keys & methods).count == 4
+  end
+
+  def location_valid?(location)
+    location.display_address && location.coordinate
+  end
 
   def search_response
     client.search(location, search_params, locale)
