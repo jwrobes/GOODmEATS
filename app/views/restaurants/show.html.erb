@@ -11,7 +11,7 @@
   <h2 class="sources__header">Sources</h2>
   <ul>
     <% @restaurant.sources.each do |source|   %>
-      <li class="source"><a href="<%= sources_path(source) %>"><%=  source.name  %></li>
+      <li class="source"><a href="<%= source_path(source) %>"><%=  source.name  %></li>
     <% end  %>
   </ul>
 </div>
