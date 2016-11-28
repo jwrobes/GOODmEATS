@@ -22,6 +22,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.full_backtrace = false
   config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
   config.order = :random
 end
