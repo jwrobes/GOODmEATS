@@ -46,10 +46,6 @@ describe NewRestaurantSearch do
     }
   end
 
-  def parse_results(results)
-    results.map(&:name)
-  end
-
   def query
     { query: "Park burger", location: "94611" }
   end

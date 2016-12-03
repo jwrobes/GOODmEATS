@@ -3,6 +3,7 @@ class YelpService
   SORT_BY_BEST_FIT_CODE = 0
   SORT_BY_BEST_DISTANCE_CODE = 1
   SORT_BY_BEST_RATING_CODE = 2
+  DEFAULT_RESULTS_LIMIT = 20
   REQUIRED_METHODS = [
     :name,
     :id,
@@ -10,11 +11,12 @@ class YelpService
     :phone
   ].freeze
 
-  attr_reader :query, :location
+  attr_reader :query, :location, :limit
 
   def initialize(query)
     @query = query[:query]
     @location = query[:location]
+    @limit = query[:limit]
   end
 
   def self.search(query)
@@ -52,12 +54,20 @@ class YelpService
   end
 
   def search_params
-    {
-      term: query,
-      category_filter: category,
-      limit: 20,
-      sort: SORT_BY_BEST_FIT_CODE
-    }
+    Hash.new.tap do |h|
+      h[:term] = query if query
+      h[:category_filter] = category
+      h[:limit] = limit || DEFAULT_RESULTS_LIMIT
+      h[:sort] = sort_code
+    end
+  end
+
+  def sort_code
+    if location && !query
+      return SORT_BY_BEST_DISTANCE_CODE
+    else
+      return SORT_BY_BEST_FIT_CODE
+    end
   end
 
   def parse(business)

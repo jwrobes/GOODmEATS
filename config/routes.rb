@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "restaurants#index"
+  root to: "restaurant_searches#show"
+
+  resource :restaurant_searches, only: [:show, :create]
 
   resources :restaurants, only: [:index, :show]
   resources :sources, only: [:index, :show]
