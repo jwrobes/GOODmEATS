@@ -16,7 +16,7 @@ class YelpService
   def initialize(query)
     @query = query[:query]
     @location = query[:location]
-    @limit = query[:limit]
+    @limit = query[:limit] || DEFAULT_RESULTS_LIMIT
   end
 
   def self.search(query)
@@ -57,7 +57,7 @@ class YelpService
     Hash.new.tap do |h|
       h[:term] = query if query
       h[:category_filter] = category
-      h[:limit] = limit || DEFAULT_RESULTS_LIMIT
+      h[:limit] = limit
       h[:sort] = sort_code
     end
   end
