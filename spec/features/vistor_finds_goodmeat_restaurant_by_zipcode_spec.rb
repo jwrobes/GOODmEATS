@@ -22,13 +22,13 @@ feature "visitor searches for goodmeat restaurants by zipcode" do
   scenario "does not find a restaurant" do
     pending "not completed yet"
     fail
-    visit root_path
+    # visit root_path
     # stub_yelp_api_request_for_zipcode_without_goodmeat_restaurant
 
-    within ".search-results-content" do
-      expect(page).to have_css "ul.search-results"
-      expect(page).to have_css "li.no-search-result"
-    end
+    # within ".search-results-content" do
+    #   expect(page).to have_css "ul.search-results"
+    #   expect(page).to have_css "li.no-search-result"
+    # end
   end
 
   def fill_in_search

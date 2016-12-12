@@ -23,4 +23,14 @@ FactoryGirl.define do
       end
     end
   end
+
+  factory :restaurant_search_result do
+    name "Park Burger"
+    phone "1510555555"
+    display_address ["1234 main st", "Neighborhood", "Oakland, CA 94606"]
+    coordinate { { latitude: 37.8072590528299, longitude: -122.222015729986 } }
+    sequence :api_id do |n|
+      n
+    end
+  end
 end

@@ -8,22 +8,23 @@ class RestaurantSearch
   end
 
   def results
-    search_results = nil
     if search_service_results
-      search_results = search_service_results.select(&:has_goodmeat?)
+      goodmeat_restaurants = goodmeats_filter(search_service_results)
     end
-    search_results
+    goodmeat_restaurants
   end
 
   private
 
+  def goodmeats_filter(results)
+    GoodmeatsFilter.new.filter(results)
+  end
+
   def search_service_results
     @_search_service_results ||= (
-      goodmeat_api_id_matcher = GoodmeatApiIdMatcher.new
       if has_query?
         search.map do |result|
-          result[:goodmeat_matcher] = goodmeat_api_id_matcher
-          SearchServiceResult.new(result)
+          RestaurantSearchResult.new(result)
         end
       end
     )
@@ -43,31 +44,5 @@ class RestaurantSearch
 
   def search
     @search_service.search(search_query)
-  end
-end
-
-class GoodmeatApiIdMatcher
-  def api_ids
-    @_api_ids ||=
-      Restaurant.order(:api_id).pluck(:api_id)
-  end
-
-  def has_matching_api_id?(api_id)
-    api_ids.include?(api_id)
-  end
-end
-
-class SearchServiceResult
-  include ActiveModel::Model
-
-  attr_accessor :name, :api_id, :display_address,
-                :coordinate, :phone, :goodmeat_matcher
-
-  def initialize(attributes = {})
-    super
-  end
-
-  def has_goodmeat?
-    goodmeat_matcher.has_matching_api_id?(api_id)
   end
 end
