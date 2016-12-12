@@ -23,6 +23,9 @@ RSpec.configure do |config|
   end
 
   config.full_backtrace = false
+  config.filter_gems_from_backtrace "action-pack-4.2.7", "clearance", "rack-1.6.5"
+  config.backtrace_exclusion_patterns = [/gems/]
+
   config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
   config.order = :random
 end
