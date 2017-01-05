@@ -9,6 +9,8 @@ AllCops:
     - "config/initializers/*"
     - "bin/delayed_job/"
     - "bin/spring/"
+    - "bin/**/*"
+    - "bin/thor/"
     - "bin/rails/"
     - "bin/rspec/"
     - "config/smtp.rb"
