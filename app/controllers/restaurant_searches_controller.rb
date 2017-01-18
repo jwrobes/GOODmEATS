@@ -1,6 +1,6 @@
 class RestaurantSearchesController < ApplicationController
   def show
-    @restaurant_search = RestaurantSearch.new(restaurant_search_params_b)
+    @restaurant_search = RestaurantSearch.new(restaurant_search_params_for_show)
     @results = results
   end
 
@@ -10,7 +10,7 @@ class RestaurantSearchesController < ApplicationController
 
   private
 
-  def restaurant_search_params_b
+  def restaurant_search_params_for_show
     params.permit(:query, :location)
   end
 

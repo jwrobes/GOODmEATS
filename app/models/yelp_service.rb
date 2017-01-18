@@ -11,12 +11,13 @@ class YelpService
     :phone
   ].freeze
 
-  attr_reader :query, :location, :limit
+  attr_reader :query, :location, :limit, :offset
 
   def initialize(query)
     @query = query[:query]
     @location = query[:location]
     @limit = query[:limit] || DEFAULT_RESULTS_LIMIT
+    @offset = query[:offset]
   end
 
   def self.search(query)
@@ -57,6 +58,7 @@ class YelpService
     Hash.new.tap do |h|
       h[:term] = query if query
       h[:category_filter] = category
+      h[:offset] = offset if offset
       h[:limit] = limit
       h[:sort] = sort_code
     end

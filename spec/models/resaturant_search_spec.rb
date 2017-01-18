@@ -14,7 +14,9 @@ describe RestaurantSearch do
       context "two yelp results and only one with goodmeat" do
         it "should return only the one matching goodmeat restaurant result" do
           matching_goodmeat_restaurant = create(:restaurant, api_id: "park-burger-oakland")
-          stub_yelp_api_request_with_one_result_matching_goodmeat_and_one_not
+          not_matching_goodmeat_restaurant = build(:restaurant, name: "blah", api_id: "blah")
+          stub_yelp_api_request_for_restaurants(matching_goodmeat_restaurant,
+                                                not_matching_goodmeat_restaurant)
 
           results = RestaurantSearch.new(query).results
 

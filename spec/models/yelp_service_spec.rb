@@ -11,10 +11,25 @@ describe YelpService do
     end
 
     context "with results limit argument" do
-      it "sets limit to argument value value" do
+      it "sets limit to argument value" do
         limit_value = 10
         yelp_service = YelpService.new(query: "blah", limit: limit_value)
         expect(yelp_service.limit).to eq(limit_value)
+      end
+    end
+
+    context "with no offset" do
+      it "sets offset to nil" do
+        yelp_service = YelpService.new(query: "blah")
+        expect(yelp_service.offset).to eq(nil)
+      end
+    end
+
+    context "with offset argument" do
+      it "sets offset to argument value" do
+        offset = 40
+        yelp_service = YelpService.new(query: "blah", offset: offset)
+        expect(yelp_service.offset).to eq(offset)
       end
     end
   end
@@ -29,6 +44,15 @@ describe YelpService do
       empty_results = []
       expect(YelpService.search(query: "Park burger", location: "94611")).
         to eq(empty_results)
+    end
+    context "with an offset" do
+      it "should return the restaurants after the offset" do
+        restaurant = build(:restaurant)
+        parsed_restaurant_result = build_parsed_restaurant_result(restaurant)
+        stub_yelp_api_request_with_query_and_offset("Park burger", 40, restaurant)
+        expect(YelpService.search(query: "Park burger", location: "94611", offset: 40)).
+          to eq([parsed_restaurant_result])
+      end
     end
   end
 end
