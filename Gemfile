@@ -26,6 +26,7 @@ gem "clearance"
 gem "rubocop"
 gem "administrate"
 gem "yelp"
+gem "react_on_rails"
 
 group :development do
   gem "quiet_assets"
