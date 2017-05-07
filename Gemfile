@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "2.4.0"
 
-gem "administrate"
+gem "administrate" # build easy admin interface
 gem "autoprefixer-rails"
 gem "clearance"
 gem "delayed_job_active_record"
@@ -16,6 +16,7 @@ gem "pg"
 gem "puma"
 gem "rack-canonical-host"
 gem "rails", "~> 5.0"
+gem "react_on_rails", "~> 7"
 gem "recipient_interceptor"
 gem "rubocop"
 gem "sass-rails"
@@ -26,7 +27,7 @@ gem "sprockets-es6"
 gem "suspenders"
 gem "title"
 gem "uglifier"
-gem "yelp"
+gem "yelp" # work with Yelp APi2.0
 
 group :development do
   gem "better_errors"
