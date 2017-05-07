@@ -5,6 +5,7 @@ abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]
 
 require "rspec/rails"
 require "clearance/rspec"
+require "spec_helper"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
@@ -14,6 +15,7 @@ module Features
 end
 
 RSpec.configure do |config|
+  config.include Rails.application.routes.url_helpers
   config.include Features, type: :feature
   config.include NewRestaurantSearchHelper
   config.infer_base_class_for_anonymous_controllers = false

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
+
 source "https://rubygems.org"
 
-ruby "2.3.1"
+ruby "2.4.0"
 
+gem "administrate"
 gem "autoprefixer-rails"
+gem "clearance"
 gem "delayed_job_active_record"
 gem "flutie"
 gem "honeybadger"
@@ -12,28 +15,25 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 4.2.0"
+gem "rails", "~> 5.0"
 gem "recipient_interceptor"
-gem "sass-rails", "~> 5.0"
+gem "rubocop"
+gem "sass-rails"
 gem "simple_form"
 gem "skylight"
 gem "sprockets", ">= 3.0.0"
 gem "sprockets-es6"
-gem "suspenders", "1.40.0"
+gem "suspenders"
 gem "title"
 gem "uglifier"
-gem "clearance"
-gem "rubocop"
-gem "administrate"
 gem "yelp"
 
 group :development do
-  gem "quiet_assets"
+  gem "better_errors"
+  gem "binding_of_caller"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
-  gem "better_errors"
-  gem "binding_of_caller"
 end
 
 group :development, :test do
@@ -44,7 +44,8 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.4.0"
+  gem "rails-controller-testing"
+  gem "rspec-rails"
 end
 
 group :development, :staging do
@@ -67,7 +68,7 @@ group :staging, :production do
   gem "rails_stdout_logging"
 end
 
+gem "bourbon"
 gem "high_voltage"
-gem "bourbon", "5.0.0.beta.6"
-gem "neat", "~> 1.8.0"
-gem "refills", group: [:development, :test]
+gem "neat"
+gem "refills", group: %i(development test)
