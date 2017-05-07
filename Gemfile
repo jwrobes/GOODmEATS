@@ -73,3 +73,5 @@ gem "bourbon"
 gem "high_voltage"
 gem "neat"
 gem "refills", group: %i(development test)
+
+gem 'mini_racer', platforms: :ruby
