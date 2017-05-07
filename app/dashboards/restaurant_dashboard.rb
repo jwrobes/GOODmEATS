@@ -27,34 +27,34 @@ class RestaurantDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :name,
-    :sources,
-    :meats
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i(
+    name
+    sources
+    meats
+  ).freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :name,
-    :sources,
-    :meats,
-    :id,
-    :created_at,
-    :updated_at,
-    :phone,
-    :api_id,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i(
+    name
+    sources
+    meats
+    id
+    created_at
+    updated_at
+    phone
+    api_id
+  ).freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :name,
-    :phone,
-    :sources,
-    :meats
-  ].freeze
+  FORM_ATTRIBUTES = %i(
+    name
+    phone
+    sources
+    meats
+  ).freeze
 
   # Overwrite this method to customize how restaurants are displayed
   # across all pages of the admin dashboard.

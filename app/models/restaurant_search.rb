@@ -21,13 +21,13 @@ class RestaurantSearch
   end
 
   def search_service_results
-    @_search_service_results ||= (
+    @_search_service_results ||= begin
       if has_query?
         search.map do |result|
           RestaurantSearchResult.new(result)
         end
       end
-    )
+    end
   end
 
   def has_query?

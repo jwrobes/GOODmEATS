@@ -4,12 +4,12 @@ class YelpService
   SORT_BY_BEST_DISTANCE_CODE = 1
   SORT_BY_BEST_RATING_CODE = 2
   DEFAULT_RESULTS_LIMIT = 20
-  REQUIRED_METHODS = [
-    :name,
-    :id,
-    :location,
-    :phone
-  ].freeze
+  REQUIRED_METHODS = %i(
+    name
+    id
+    location
+    phone
+  ).freeze
 
   attr_reader :query, :location, :limit
 
@@ -34,9 +34,9 @@ class YelpService
   def business_valid?(business)
     if has_required_methods?(business.methods) &&
        location_valid?(business.location)
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
@@ -64,9 +64,9 @@ class YelpService
 
   def sort_code
     if location && !query
-      return SORT_BY_BEST_DISTANCE_CODE
+      SORT_BY_BEST_DISTANCE_CODE
     else
-      return SORT_BY_BEST_FIT_CODE
+      SORT_BY_BEST_FIT_CODE
     end
   end
 
