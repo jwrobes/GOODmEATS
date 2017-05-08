@@ -11,16 +11,25 @@ class YelpService
     phone
   ).freeze
 
-  attr_reader :query, :location, :limit
+  attr_reader :query, :location, :limit, :offset
 
   def initialize(query)
     @query = query[:query]
     @location = query[:location]
     @limit = query[:limit] || DEFAULT_RESULTS_LIMIT
+    @offset = calculate_offset(query[:offset])
   end
 
   def self.search(query)
     new(query).search
+  end
+
+  def calculate_offset(offset)
+    result = nil
+    if offset
+     result = offset * 40
+    end
+    result
   end
 
   def search
@@ -59,6 +68,7 @@ class YelpService
       h[:category_filter] = category
       h[:limit] = limit
       h[:sort] = sort_code
+      h[:offset] = offset if offset
     end
   end
 

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'visitor_app', to: 'visitor_app#index'
+
+
   get 'hello_world', to: 'hello_world#index'
   constraints Clearance::Constraints::SignedIn.new(&:admin?) do
     namespace :admin do

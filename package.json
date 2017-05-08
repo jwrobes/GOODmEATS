@@ -10,5 +10,11 @@
     "postinstall": "cd client && yarn install",
     "rails-server": "echo 'visit http://localhost:3000/hello_world' && foreman start -f Procfile.dev",
     "test": "rspec"
+  },
+  "dependencies": {
+    "formsy-material-ui": "^0.6.0",
+    "formsy-react": "^0.19.2",
+    "redux-thunk": "^2.2.0",
+    "seamless-immutable": "^7.1.2"
   }
 }

@@ -2,3 +2,30 @@
 # yarn lockfile v1
 
 
+form-data-to-object@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/form-data-to-object/-/form-data-to-object-0.2.0.tgz#f7a8e68ddd910a1100a65e25ac6a484143ff8168"
+
+formsy-material-ui@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/formsy-material-ui/-/formsy-material-ui-0.6.0.tgz#43f72264d0947da6b2b40cfea5f94f2f7fb47bce"
+  dependencies:
+    keycode "^2.1.0"
+
+formsy-react@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/formsy-react/-/formsy-react-0.19.2.tgz#7fa818ff93c8c07195486c4d2e42b6da0c0ee4a3"
+  dependencies:
+    form-data-to-object "^0.2.0"
+
+keycode@^2.1.0:
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
+
+redux-thunk@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
+
+seamless-immutable@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.1.2.tgz#c87a1eba6767a32455311d76600ac5eddeafbb69"

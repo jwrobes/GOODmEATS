@@ -5,8 +5,7 @@ class RestaurantSearchesController < ApplicationController
   end
 
   def create
-    @restaurant_search = RestaurantSearch.new(restaurant_search_params)
-    render json: results
+    redirect_to restaurant_searches_path(restaurant_search_params)
   end
 
   private
@@ -16,7 +15,7 @@ class RestaurantSearchesController < ApplicationController
   end
 
   def restaurant_search_params
-    params.require(:restaurant_search).permit(:query, :location, :offset)
+    params.require(:restaurant_search).permit(:query, :location)
   end
 
   def results

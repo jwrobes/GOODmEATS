@@ -1,6 +1,6 @@
 class RestaurantSearch
   include ActiveModel::Model
-  attr_accessor :query, :location
+  attr_accessor :query, :location, :offset
 
   def initialize(attributes = {})
     super
@@ -39,6 +39,7 @@ class RestaurantSearch
       h[:query] = query if query.present?
       h[:location] = location if location.present?
       h[:limit] = 40
+      h[:offset] = offset if offset
     end
   end
 
