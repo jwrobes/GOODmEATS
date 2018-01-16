@@ -1,5 +1,8 @@
 class RestaurantSearch
   include ActiveModel::Model
+
+  SEARCH_LIMIT = 50
+
   attr_accessor :query, :location
 
   def initialize(attributes = {})
@@ -38,7 +41,7 @@ class RestaurantSearch
     Hash.new.tap do |h|
       h[:query] = query if query.present?
       h[:location] = location if location.present?
-      h[:limit] = 40
+      h[:limit] = SEARCH_LIMIT
     end
   end
 
