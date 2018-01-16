@@ -1,10 +1,12 @@
+require "http"
+
 class YelpService
   DEFAULT_LOCATION_DISTANCE = 10_000
-  SORT_BY_BEST_FIT_CODE = 0
-  SORT_BY_BEST_DISTANCE_CODE = 1
+  SORT_BY_BEST_FIT_CODE = "best_match".freeze
+  SORT_BY_BEST_DISTANCE_CODE = "distance".freeze
   SORT_BY_BEST_RATING_CODE = 2
-  DEFAULT_RESULTS_LIMIT = 20
-  REQUIRED_METHODS = %i(
+  DEFAULT_RESULTS_LIMIT = 50
+  REQUIRED_METHODS = %w(
     name
     id
     location
@@ -24,7 +26,7 @@ class YelpService
   end
 
   def search
-    search_response.businesses.map do |business|
+    search_response["businesses"].map do |business|
       parse(business) if business_valid?(business)
     end.compact
   end
@@ -32,8 +34,9 @@ class YelpService
   private
 
   def business_valid?(business)
-    if has_required_methods?(business.methods) &&
-       location_valid?(business.location)
+    if has_required_methods?(business.keys) &&
+       location_valid?(business["location"]) &&
+       coordinates_valid?(business["coordinates"])
       true
     else
       false
@@ -46,19 +49,25 @@ class YelpService
   end
 
   def location_valid?(location)
-    location.display_address && location.coordinate
+    location["display_address"]
+  end
+
+  def coordinates_valid?(coordinates)
+    coordinates && (coordinates&.keys & %w(longitude latitude)).count == 2
   end
 
   def search_response
-    client.search(location, search_params, locale)
+    client.search(search_params)
   end
 
   def search_params
     Hash.new.tap do |h|
       h[:term] = query if query
-      h[:category_filter] = category
+      h[:categories] = category
       h[:limit] = limit
-      h[:sort] = sort_code
+      h[:location] = location
+      h[:locale] = locale
+      h[:sort_by] = sort_code
     end
   end
 
@@ -72,29 +81,52 @@ class YelpService
 
   def parse(business)
     {
-      name: business.name,
-      api_id: business.id,
-      display_address: business.location.display_address,
+      name: business["name"],
+      api_id: business["id"],
+      display_address: business["location"]["display_address"],
       coordinate: {
-        latitude: business.location.coordinate.latitude,
-        longitude: business.location.coordinate.longitude
+        latitude: business["coordinates"]["latitude"],
+        longitude: business["coordinates"]["longitude"],
       },
-      phone: business.phone
+      phone: business["phone"]
     }
   end
 
   def client
-    Yelp::Client.new(consumer_key: ENV.fetch("YELP_CONSUMER_KEY"),
-                     consumer_secret: ENV.fetch("YELP_CONSUMER_SECRET"),
-                     token: ENV.fetch("YELP_TOKEN"),
-                     token_secret: ENV.fetch("YELP_TOKEN_SECRET"))
+    ::YelpClient
   end
 
   def locale
-    { lang: "en" }
+    "en_US"
   end
 
   def category
     "restaurants"
+  end
+end
+
+class YelpClient
+  API_HOST = ENV.fetch("YELP_API_HOST")
+  SEARCH_PATH = ENV.fetch("YELP_SEARCH_PATH")
+  BUSINESS_PATH = ENV.fetch("YELP_BUSINESS_PATH")
+  API_KEY = ENV.fetch("YELP_API_KEY")
+
+  attr_reader :params
+
+  def initialize(params)
+    @params = params
+  end
+
+  def url
+    "#{API_HOST}#{SEARCH_PATH}"
+  end
+
+  def self.search(params)
+    new(params).search
+  end
+
+  def search
+    response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
+    response.parse
   end
 end
